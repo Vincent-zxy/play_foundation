@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style >
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-image: url("/public/background.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .top {
+            height: 40px;
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bottom {
+            height:40px;
+            border-top: 1px solid #ccc;
+            background: white;
+        }
+
+        .center {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .c_top {
+            background: #f5f5f5;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            height: 800px;
+        }
+
+        .c_center {
+            width: 100%;
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            padding: 0 10px;
+            padding-top: 80px;
+        }
+
+        .c_bottom {
+            background: #f5f5f5;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            height: 800px;
+        }
+        .item{
+            width: 46%;
+            height: 150px;
+            margin-right: 4%;
+            margin-bottom: 3%;
+            padding-bottom: 5px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 20px;
+        }
+        .item img{
+            height: 80%;
+            border-radius: 20px 20px 0 0;
+        }
+        .item div{
+            overflow: hidden;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="top">Vincent</div>
+        <div class="center">
+            <div class="c_top"></div>
+            <div class="c_center">
+                <div>广告</div>
+            </div>
+            <div class="c_bottom"></div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+    <!-- <script src="../js/let_const.js"></script> -->
+    <!-- <script src="../js/string.js"></script> -->
+    <!-- <script src="../js/function.js"></script> -->
+    <!-- <script src="../js/array.js"></script> -->
+    <!-- <script src="../js/object.js"></script> -->
+    <!-- <script src="../js/extend.js"></script> -->
+    <script src="../js/proxy.js"></script>
+    <script>
+        const topDiv = document.querySelector('.c_top');
+        const bottom = document.querySelector('.c_bottom');
+        let index_arr=[
+            {id:1,title:"请问请问IEu武器额UI"},
+            {id:2,title:"打卡机萨克大家啊上"},
+            {id:3,title:"啊实打实大厦大萨达"},
+            {id:4,title:"第七位我去玩儿玩儿"},
+            {id:5,title:"气温气温气温气温王"},
+            {id:6,title:"额外沃尔沃热污染"},
+        ]
+        let htmlContent = '';
+        index_arr.forEach(item => {
+            htmlContent += `
+                <div class="item">
+                    <img src="/public/shop.png" alt="">
+                    <div>${item.title}</div>
+                </div>
+            `;
+        });
+        topDiv.innerHTML = htmlContent;
+        bottom.innerHTML = htmlContent;
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+        }
+        .library{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .library_header{
+            background: pink;
+            height: 300px;
+        }
+        .library_body{
+            flex: 1;
+            background: skyblue;
+            padding: 10px;
+            width: 100%;
+            overflow-y: auto;
+        }
+        .item{
+            height: 100px;
+            background: white;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="library">
+        <div class="library_header">
+            我是头部
+        </div>
+        <div class="library_body">
+           <div class="item">item1</div>
+           <div class="item">item2</div>
+           <div class="item">item3</div>
+           <div class="item">item4</div>
+           <div class="item">item5</div>
+           <div class="item">item6</div>
+           <div class="item">item7</div>
+           <div class="item">item8</div>
+        </div>
+    </div>
+    <script>
+        // 我们要明确一点 我们要存的东西是 可滚动区域的 scrollTop  那么怎么算呢？
+        // 万能公式是： 当前current到视图的距离 - 可滚动区域上面的高度 + 滚动区域的位置 scrollTop
+        // 简单方法就是 把滚动区域内的位置 scrollTop 存里，再拿出来就可以了 
+        
+       
+        let itemAll=document.querySelectorAll('.item')
+        itemAll.forEach(item=>{
+            item.addEventListener('click', function(e) {
+                console.log(e.target);
+                // 当前current到视图的距离
+                // const currentEven = document.querySelector('.current').getBoundingClientRect().top
+                const currentEven=e.target.getBoundingClientRect().top
+                // 可滚动区域上面的高度
+                const library_header = document.querySelector('.library_header').getBoundingClientRect().height
+                // 滚动区域的位置 scrollTop
+                const library_body_scrollTop=document.querySelector('.library_body').scrollTop
+
+                // const saveScrollTop= currentEven - library_header + library_body_scrollTop
+                const saveScrollTop= library_body_scrollTop
+                console.log(currentEven,'currentEven');
+                console.log(library_header,'library_header');
+                console.log(library_body_scrollTop,'library_body_scrollTop');
+                console.log(saveScrollTop,'saveScrollTop');
+
+                localStorage.setItem('saveScrollTop',saveScrollTop)
+                // window.location.href='./index.html'
+            });
+        })
+         // 在返回原始页面时恢复滚动位置
+         document.addEventListener("DOMContentLoaded", function() {
+            const library_body = document.querySelector('.library_body');
+            const library_header = document.querySelector('.library_header');
+
+            const savedScrollTop = localStorage.getItem('saveScrollTop');
+            if (savedScrollTop) {
+                // const headerHeight = library_header.getBoundingClientRect().height;
+                library_body.scrollTop = savedScrollTop 
+
+            }
+        });
+    </script>
+</body>
+</html>
