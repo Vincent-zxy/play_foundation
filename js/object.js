@@ -160,6 +160,7 @@
 // Object.assign(null || undefined) // 报错
 
 // Object.getOwnPropertyDescriptors ：
+// 方法返回一个对象，该对象的属性是传入对象的所有自身属性（即直接定义在该对象上的属性，不包括原型链中的属性）的描述符。
 // 主要是为了解决Object.assign()无法正确拷贝get属性和set属性的问题
 // 该方法的底层就是由 getOwnPropertyDescriptor 实现的
 // function getOwnPropertyDescriptors(obj) {
@@ -180,18 +181,20 @@
 // console.log(Object.getOwnPropertyDescriptor(obj,'foo'));
 // console.log(Object.getOwnPropertyDescriptors(obj));
 // console.log(Reflect.ownKeys(obj));
-// const source = {
-//   set foo(value) {
-//     console.log(value);
-//   }
-// };
-// const target2 = {};
-// console.log(Object.getOwnPropertyDescriptors(source));
-// Object.defineProperties(target2, Object.getOwnPropertyDescriptors(source))
+
+const source = {
+  set foo(value) {
+    console.log(value);
+  }
+};
+const target2 = {};
+console.log(Object.getOwnPropertyDescriptors(source));
+Object.defineProperties(target2, Object.getOwnPropertyDescriptors(source))
+// defineProperties:在一个对象上同时定义多个属性及其描述符
 // obj: 要在其上定义或修改属性的对象。
 // props: 一个对象，其属性键是要添加到 obj 的属性名，其属性值是对应的描述符对象。
-// console.log(target2);
-// console.log(Object.getOwnPropertyDescriptor(target2, 'foo'));
+console.log(target2);
+console.log(Object.getOwnPropertyDescriptor(target2, 'foo'));
 
 
 // __proto__ :调用的是Object.prototype.__proto__

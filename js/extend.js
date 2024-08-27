@@ -168,3 +168,4 @@ console.log(map.get(k1));
 
 // FinalizationRegistry  清理器注册表功能
 // 用来指定目标对象被垃圾回收机制清除以后，所要执行的回调函数
+
