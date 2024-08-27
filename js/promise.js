@@ -39,6 +39,7 @@ p2
 .then(result => console.log(result,'result'))
 .catch(error => console.log(error,'error'))
 
+// 测试a电脑的上传
 
 
 
